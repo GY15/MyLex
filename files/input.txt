@@ -1,0 +1,4 @@
+public s = dgfdg
+	s=asd
+for int i=100;i>0;i--
+	sdd--
