@@ -1,8 +1,9 @@
+SSS c|(ab)+|((b|a)?)
 ε [ \t\n]+
 ID/ [a-zA-Z]([a-zA-Z0-9])*
 NUMBER/ [0-9]+(\.[0-9]+)?(E[\+\-]?[0-9]+)?
 IF if
-THEN then
+THEN t(he)n
 ELSE else
 RELOP/LT <
 RELOP/GT >

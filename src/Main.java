@@ -5,6 +5,7 @@
 import Process.*;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.RegularExpression;
 import exception.NotFoundREsException;
+import exception.NotREsException;
 import exception.WrongSort;
 
 import java.io.FileNotFoundException;
@@ -23,6 +24,8 @@ public class Main {
             e2.printStackTrace();
         }catch (WrongSort e3){
             e3.printStackTrace();
+        }catch (NotREsException e4){
+            e4.printStackTrace();
         }
 //        StandardRE standardRE
 // = handler.getStandardRE();
