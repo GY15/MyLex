@@ -1,4 +1,4 @@
-SSS c|(ab)*|((b|a)?)
+SSS (a▪b)*
 ε [ \t\n]+
 ID/ [a-zA-Z]([a-zA-Z0-9])*
 NUMBER/ [0-9]+(\.[0-9]+)?(E[\+\-]?[0-9]+)?
@@ -12,4 +12,3 @@ RELOP/NE !=
 RELOP/LE <=
 RELOP/EQ ==
 RELOP/E =
-

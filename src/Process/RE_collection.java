@@ -5,7 +5,7 @@ import exception.NotREsException;
 import exception.WrongSort;
 import utility.Operator;
 import utility.StaticVal;
-import utility.Token;
+import utility.Token_RE;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -19,21 +19,21 @@ import java.util.Stack;
  * 并初始化
  * 并保留各个token
  */
-public class REs {
+public class RE_collection {
     //文件路径
     private String filePath;
     /**
      * 用来保存所有的正则表达式  token yylval re
      */
-    private List<Token> expressions;
+    private List<Token_RE> expressions;
 
 
-    public REs(String path) {
+    public RE_collection(String path) {
         this.filePath = path;
         expressions = new ArrayList<>();
     }
 
-    public List<Token> getExpressions() {
+    public List<Token_RE> getExpressions() {
         return expressions;
     }
 
@@ -58,7 +58,7 @@ public class REs {
             if (temp.length() < (str.length() + 1)) {
                 throw new NotFoundREsException();
             } else {
-                expressions.add(new Token(str, temp.substring(str.length() + 1).trim()));
+                expressions.add(new Token_RE(str, temp.substring(str.length() + 1).trim()));
             }
         }
 
@@ -71,7 +71,7 @@ public class REs {
      */
     public void postfixERs() throws WrongSort, NotREsException {
         for (int num = 0; num < expressions.size(); num++) {
-            Token token = expressions.get(num);
+            Token_RE token = expressions.get(num);
             String expr = format(token.getExpression());
             try {
                 expr = addConnector(expr);
@@ -92,10 +92,12 @@ public class REs {
         StringBuffer postfix = new StringBuffer();
         for (int i = 0; i < expr.length(); i++) {
             char c = expr.charAt(i);
-            if (c == '\\' || c == ' ') {
+            if (c == '\\') {
                 postfix.append(c);
+                postfix.append(expr.charAt(i+1));
+                i++;
             }
-            if (StaticVal.isOperand(c)) {
+            else if (StaticVal.isOperand(c)||c == ' ') {
                 postfix.append(String.valueOf(c));
             } else if (StaticVal.isDoubleSign(c) || StaticVal.isSign(c)) {
                 while (stack.size() != 0) {

@@ -60,10 +60,15 @@ public class StaticVal {
     }
     //判读是否是一个操作数
     public static boolean isOperand(char c){
-        if ((c<='z'&&c>='a')||(c<='Z'&&c>='A')||(c<='9'&&c>='0')|| StaticVal.isReserved(c)){
+        if ((c<='z'&&c>='a')||(c<='Z'&&c>='A')||(c<='9'&&c>='0')|| isReserved(c)){
             return true;
         }
         return false;
+    }
+    //返回目前的NFA ID号码
+    private static int id = 2;
+    public static int getID(){
+        return id++;
     }
 
 }

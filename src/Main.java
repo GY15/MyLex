@@ -3,18 +3,15 @@
  * Created by 61990 on 2017/10/25.
  */
 import Process.*;
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.RegularExpression;
 import exception.NotFoundREsException;
 import exception.NotREsException;
 import exception.WrongSort;
-
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
         String path = "files/REs.l";
-        REs handler = new REs(path);
+        RE_collection handler = new RE_collection(path);
         try {
             handler.createREs();
             handler.postfixERs();
@@ -27,8 +24,12 @@ public class Main {
         }catch (NotREsException e4){
             e4.printStackTrace();
         }
-        handler.getExpressions().size();
-        int i = 1+1;
+        NFA_collection handleRE = new NFA_collection(handler.getExpressions());
+        try {
+            handleRE.handle_RE_to_NFA();
+        } catch (NotREsException e) {
+            e.printStackTrace();
+        }
 //        StandardRE standardRE
 // = handler.getStandardRE();
 //        NFA nfa = standardRE.getNFA();

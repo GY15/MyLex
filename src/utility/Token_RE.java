@@ -3,7 +3,7 @@ package utility;
 /**
  * Created by 61990 on 2017/10/26.
  */
-public class Token {
+public class Token_RE {
     private String token;
     private String yylval;
     private String expression;
@@ -11,7 +11,7 @@ public class Token {
     /**
      * 初始化队列，将token等分开
      * */
-    public Token(String token, String expression) {
+    public Token_RE(String token, String expression) {
         this.expression = expression;
         try {
             String array[] = token.split("/");
