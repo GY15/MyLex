@@ -13,6 +13,7 @@ public class Operator {
         if (priority==null){
             priority=new HashMap<>();
             priority.put('+',8);
+            priority.put('*',8);
             priority.put('(',1);
             priority.put('?',8);
             priority.put('▪',3);

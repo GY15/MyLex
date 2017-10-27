@@ -49,7 +49,7 @@ public class StaticVal {
         return false;
     }
     //RE中双目运算符的符号
-    public static char[] re_double_sign = new char[]{'|','▪'};
+    public static char[] re_double_sign = new char[]{'|','▪','*'};
     public static boolean isDoubleSign(char c){
         for (int i =0 ;i<re_double_sign.length;i++){
             if (c==re_double_sign[i]){

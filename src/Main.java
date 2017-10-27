@@ -27,6 +27,8 @@ public class Main {
         }catch (NotREsException e4){
             e4.printStackTrace();
         }
+        handler.getExpressions().size();
+        int i = 1+1;
 //        StandardRE standardRE
 // = handler.getStandardRE();
 //        NFA nfa = standardRE.getNFA();

@@ -33,8 +33,13 @@ public class REs {
         expressions = new ArrayList<>();
     }
 
+    public List<Token> getExpressions() {
+        return expressions;
+    }
+
     /**
      * 从文件中读取RE的信息
+
      */
     public void createREs() throws IOException, NotFoundREsException {
         FileReader fr = null;
@@ -74,7 +79,7 @@ public class REs {
             } catch (Exception e) {
                 throw new NotREsException(num);
             }
-            token.setExpression(expr);
+            expressions.get(num).setExpression(expr);
         }
     }
 
