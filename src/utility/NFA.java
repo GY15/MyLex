@@ -16,8 +16,8 @@ public class NFA {
      *
      * */
     public NFA(NFA nfa, char c) {
-        int start = StaticVal.getID();
-        int end = StaticVal.getID();
+        int start = StaticVal.getNFA_ID();
+        int end = StaticVal.getNFA_ID();
 
         for (NFA_Edge edges : nfa.getNFA_Edges()){
             if (edges.getFirst_id()==0||edges.getSecond_id()==0){
@@ -44,11 +44,11 @@ public class NFA {
 
     public NFA(NFA nfa2, NFA nfa1, char c) {
         if(c=='|') {
-            changeStartEnd(StaticVal.getID(),StaticVal.getID(),nfa1);
-            changeStartEnd(StaticVal.getID(),StaticVal.getID(),nfa2);
+            changeStartEnd(StaticVal.getNFA_ID(),StaticVal.getNFA_ID(),nfa1);
+            changeStartEnd(StaticVal.getNFA_ID(),StaticVal.getNFA_ID(),nfa2);
         }
         else if(c=='▪'){
-            int mid = StaticVal.getID();
+            int mid = StaticVal.getNFA_ID();
             copyLast(nfa1,0,mid);
             copyLast(nfa2,mid,1);
 

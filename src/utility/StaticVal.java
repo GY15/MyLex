@@ -12,7 +12,6 @@ public class StaticVal {
     /**
      *
      * 保存需要从文本里提取yylval 的token
-     *
      */
     public static List<String> token;
 
@@ -66,9 +65,15 @@ public class StaticVal {
         return false;
     }
     //返回目前的NFA ID号码
-    private static int id = 2;
-    public static int getID(){
-        return id++;
+    private static int NFA_id = 2;
+    public static int getNFA_ID(){
+        return NFA_id++;
+    }
+
+    //返回目前的DFA ID号码
+    private static int DFA_id = 2;
+    public static int getDFA_ID(){
+        return DFA_id++;
     }
 
 }

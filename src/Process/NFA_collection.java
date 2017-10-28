@@ -14,6 +14,11 @@ import java.util.Stack;
 public class NFA_collection {
     //保存处理过的expression
     private List<Token_RE> regularExpressions;
+
+    public List<Token_NFA> getNFA_Expressions() {
+        return NFA_Expressions;
+    }
+
     private List<Token_NFA> NFA_Expressions;
 
     public NFA_collection(List<Token_RE> regularExpressions) {
@@ -29,7 +34,6 @@ public class NFA_collection {
         for (int i = 0; i < regularExpressions.size(); i++) {
             try {
                 Token_RE token_re = regularExpressions.get(i);
-                //todo 返回一个NFA
                 NFA_Expressions.add(new Token_NFA(token_re,RE_to_NFA(token_re.getExpression())));
             } catch (Exception e) {
                 e.printStackTrace();
@@ -77,10 +81,10 @@ public class NFA_collection {
             stack.push(handle);
         }
         if (stack.size()==1){
-            NFA a = stack.peek();
-            for (NFA_Edge s:a.getNFA_Edges()){
-                System.out.println(s.getFirst_id()+" "+ s.getSecond_id()+" " + s.getValue());
-            }
+//            NFA a = stack.peek();
+//            for (NFA_Edge s:a.getNFA_Edges()){
+//                System.out.println(s.getFirst_id()+" "+ s.getSecond_id()+" " + s.getValue());
+//            }
             return stack.pop();
         }else{
             throw new Exception();

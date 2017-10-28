@@ -6,6 +6,8 @@ import Process.*;
 import exception.NotFoundREsException;
 import exception.NotREsException;
 import exception.WrongSort;
+import utility.DFA;
+
 import java.io.IOException;
 
 public class Main {
@@ -27,6 +29,12 @@ public class Main {
         NFA_collection handleRE = new NFA_collection(handler.getExpressions());
         try {
             handleRE.handle_RE_to_NFA();
+        } catch (NotREsException e) {
+            e.printStackTrace();
+        }
+        DFA_collection handleNFA = new DFA_collection(handleRE.getNFA_Expressions());
+        try {
+            handleNFA.handle_NFA_to_DFA();
         } catch (NotREsException e) {
             e.printStackTrace();
         }
