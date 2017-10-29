@@ -1,4 +1,4 @@
-package Process;
+package process;
 
 import exception.NotREsException;
 import utility.*;
@@ -82,7 +82,7 @@ public class NFA_collection {
         }
         if (stack.size()==1){
 //            NFA a = stack.peek();
-//            for (NFA_Edge s:a.getNFA_Edges()){
+//            for (NFA_Edge s: a.getNFA_Edges()){
 //                System.out.println(s.getFirst_id()+" "+ s.getSecond_id()+" " + s.getValue());
 //            }
             return stack.pop();

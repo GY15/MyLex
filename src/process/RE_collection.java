@@ -1,4 +1,4 @@
-package Process;
+package process;
 
 import exception.NotFoundREsException;
 import exception.NotREsException;
@@ -55,6 +55,7 @@ public class RE_collection {
             }
 
             String str = temp.split(" ")[0];
+
             if (temp.length() < (str.length() + 1)) {
                 throw new NotFoundREsException();
             } else {
@@ -62,7 +63,7 @@ public class RE_collection {
             }
         }
 
-//        System.out.println(StaticVal.getTokens().size());
+//        System.out.println(StaticVal.getTokensNeedVal().size());
     }
 
     /**

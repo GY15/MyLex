@@ -15,14 +15,14 @@ public class StaticVal {
      */
     public static List<String> token;
 
-    public static List<String> getTokens() {
+    public static List<String> getTokensNeedVal() {
         if(token ==null){
             token = new ArrayList<>();
         }
             return token;
     }
     public static void add(String token){
-        getTokens().add(token);
+        getTokensNeedVal().add(token);
     }
 
     /**
@@ -38,7 +38,7 @@ public class StaticVal {
         return false;
     }
     //RE中需要连接符单目运算符的符号
-    public static char[] re_sign = new char[]{'+','?'};
+    public static char[] re_sign = new char[]{'+','?','*'};
     public static boolean isSign(char c){
         for (int i =0 ;i<re_sign.length;i++){
             if (c==re_sign[i]){
@@ -48,7 +48,7 @@ public class StaticVal {
         return false;
     }
     //RE中双目运算符的符号
-    public static char[] re_double_sign = new char[]{'|','▪','*'};
+    public static char[] re_double_sign = new char[]{'|','▪'};
     public static boolean isDoubleSign(char c){
         for (int i =0 ;i<re_double_sign.length;i++){
             if (c==re_double_sign[i]){
@@ -70,8 +70,12 @@ public class StaticVal {
         return NFA_id++;
     }
 
+    public static void setDFA_id(int DFA_id) {
+        StaticVal.DFA_id = DFA_id;
+    }
+
     //返回目前的DFA ID号码
-    private static int DFA_id = 2;
+    private static int DFA_id = 0;
     public static int getDFA_ID(){
         return DFA_id++;
     }

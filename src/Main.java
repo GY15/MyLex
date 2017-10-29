@@ -2,13 +2,17 @@
 /**
  * Created by 61990 on 2017/10/25.
  */
-import Process.*;
+import exception.NotTokenException;
+import process.*;
 import exception.NotFoundREsException;
 import exception.NotREsException;
 import exception.WrongSort;
-import utility.DFA;
+import utility.StaticVal;
+import utility.Token;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -27,17 +31,34 @@ public class Main {
             e4.printStackTrace();
         }
         NFA_collection handleRE = new NFA_collection(handler.getExpressions());
+        DFA_collection handle = null;
         try {
             handleRE.handle_RE_to_NFA();
+            handle = new DFA_collection(handleRE.getNFA_Expressions());
+            handle.handle_NFA_to_DFA();
+            handle.minDFA();
+//            int i =1+1;
         } catch (NotREsException e) {
             e.printStackTrace();
         }
-        DFA_collection handleNFA = new DFA_collection(handleRE.getNFA_Expressions());
+        //至此得到所有的Token
+        HandleTxt handleTxt=null;
+        List<List<Token>> tokenLists=null;
         try {
-            handleNFA.handle_NFA_to_DFA();
-        } catch (NotREsException e) {
+            handleTxt = new HandleTxt("files/input.txt", handle);
+            tokenLists = handleTxt.getTokens();
+        } catch (NotTokenException e) {
             e.printStackTrace();
         }
+        for (List<Token> tokens : tokenLists){
+            for (Token token : tokens){
+                System.out.print(token.getToken()+" ");
+
+            }
+            System.out.println();
+        }
+
+
 //        StandardRE standardRE
 // = handler.getStandardRE();
 //        NFA nfa = standardRE.getNFA();
