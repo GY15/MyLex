@@ -52,6 +52,7 @@ public class Main {
         }
         for (List<Token> tokens : tokenLists){
             for (Token token : tokens){
+                if(!token.getToken().equals("ε"))
                 System.out.print(token.getToken()+" ");
 
             }
