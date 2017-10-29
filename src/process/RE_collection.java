@@ -131,7 +131,8 @@ public class RE_collection {
     }
 
     /**
-     * 去掉大括号 用（|）代替
+     * 去掉中括号 用（|）代替
+     *
      */
     private String format(String expression) throws WrongSort {
         for (int i = 0; i < expression.length(); i++) {
@@ -148,6 +149,7 @@ public class RE_collection {
             }
 
         }
+
         return expression;
     }
 
