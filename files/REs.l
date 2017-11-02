@@ -7,8 +7,8 @@ SSS (a▪b)*c+
 ε [ \t\n]+
 IF if
 
-
-ID/ [a-z]([a-z0-9])*
+MAIN main
+ID/ [a-z]([A-Za-z0-9])*
 
 NUMBER/ [0-9]+(\.[0-9]+)?(E[\+\-]?[0-9]+)?
 RELOP/LT <

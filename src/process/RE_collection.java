@@ -75,6 +75,7 @@ public class RE_collection {
             Token_RE token = expressions.get(num);
             String expr = format(token.getExpression());
             try {
+                //去除大括号
                 expr = addConnector(expr);
                 expr = postfix(expr);
             } catch (Exception e) {
@@ -83,6 +84,7 @@ public class RE_collection {
             expressions.get(num).setExpression(expr);
         }
     }
+
 
     /**
      * 中缀变后缀
@@ -131,10 +133,24 @@ public class RE_collection {
     }
 
     /**
+     * 去掉通配符 .
      * 去掉中括号 用（|）代替
-     *
      */
     private String format(String expression) throws WrongSort {
+        for (int i = 0;i<expression.length();i++){
+            if(expression.charAt(i)=='\\'){
+                i++;
+                continue;
+            }else {
+                if (expression.charAt(i)=='.') {
+                    if (i == expression.length()-1) {
+                        expression = expression.substring(0, i) + "[a-zA-Z0-9]" ;
+                    } else {
+                        expression = expression.substring(0, i) + "[a-zA-Z0-9]" + expression.substring(i + 1);
+                    }
+                }
+            }
+        }
         for (int i = 0; i < expression.length(); i++) {
             if (expression.charAt(i) == '[') {
                 for (int j = i + 1; j < expression.length(); j++) {

@@ -1,4 +1,4 @@
-ab = abab123
+ab main = abab123
 	10.98 10E-3
 ababc
 
