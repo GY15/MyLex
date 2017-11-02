@@ -113,11 +113,12 @@ public class RE_collection {
                             }
                         }
                     }
-                }else {
+
+                }else{
                     loop = "" + expr.charAt(i - 1);
                 }
                     for (int k = num1; k <= num2; k++) {
-                        for (int s = 0; s < num1; s++) {
+                        for (int s = 0; s < k; s++) {
                             str += loop;
                         }
                         if (k != num2) {
