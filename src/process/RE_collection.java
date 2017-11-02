@@ -66,6 +66,74 @@ public class RE_collection {
 //        System.out.println(StaticVal.getTokensNeedVal().size());
     }
 
+    public String deleteBig(String expr){
+        for (int i = 0; i< expr.length();i++){
+            if (expr.charAt(i)=='\\'){
+                i++;
+                continue;
+            }
+            if (expr.charAt(i)=='{') {
+                String first = "", second = "";
+                boolean isFirst = true;
+                int last = i,start = i;
+                for (int j = i + 1; j < expr.length(); j++) {
+                    if (expr.charAt(j) == ',') {
+                        isFirst = false;
+                    } else if (expr.charAt(j) == '}') {
+                        if (isFirst) {
+                            second = first;
+                        }
+                        last = j;
+                        break;
+                    } else {
+                        if (isFirst) {
+                            first += expr.charAt(j);
+                        } else {
+                            second += expr.charAt(j);
+                        }
+                    }
+                }
+                int num1 = Integer.parseInt(first.trim());
+                int num2 = Integer.parseInt(second.trim());
+
+                String str = "";
+                String loop="";
+                if (expr.charAt(i - 1) == ')'){
+                    int num = 0;
+                    for (int j = i-1;j>=0;j--){
+                        if(expr.charAt(j)==')'){
+                            num++;
+                        }
+                        if(expr.charAt(j)=='('){
+                            num--;
+                            if(num==0){
+                                loop = expr.substring(j,i);
+                                start = j+1;
+                                break;
+                            }
+                        }
+                    }
+                }else {
+                    loop = "" + expr.charAt(i - 1);
+                }
+                    for (int k = num1; k <= num2; k++) {
+                        for (int s = 0; s < num1; s++) {
+                            str += loop;
+                        }
+                        if (k != num2) {
+                            str += "|";
+                        }
+                    }
+
+                if(last<expr.length()-1) {
+                    expr = expr.substring(0, start - 1) + "("+str +")"+ expr.substring(last + 1);
+                }else{
+                    expr = expr.substring(0, start - 1) +  "("+str +")";
+                }
+            }
+        }
+        return expr;
+    }
     /**
      * 加上连接符号
      * 再生成后缀表达式
@@ -76,6 +144,7 @@ public class RE_collection {
             String expr = format(token.getExpression());
             try {
                 //去除大括号
+                expr = deleteBig(expr);
                 expr = addConnector(expr);
                 expr = postfix(expr);
             } catch (Exception e) {

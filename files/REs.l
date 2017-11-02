@@ -1,5 +1,5 @@
 
-THEN t(he)n
+THEN t(he)(n|m){1,3}a
 ELSE else
 PUBLIC public
 STATIC static
