@@ -25,4 +25,8 @@ public class Token {
     public String getText() {
         return text;
     }
+
+    public String getYylval() {
+        return yylval;
+    }
 }

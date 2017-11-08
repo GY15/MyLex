@@ -10,7 +10,7 @@ import exception.WrongSort;
 import utility.StaticVal;
 import utility.Token;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,13 +50,26 @@ public class Main {
         } catch (NotTokenException e) {
             e.printStackTrace();
         }
-        for (List<Token> tokens : tokenLists){
-            for (Token token : tokens){
-                if(!token.getToken().equals("ε"))
-                System.out.print(token.getToken()+" ");
 
+        try {
+
+            FileWriter fw = new FileWriter(new File("files/output.txt").getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            for (List<Token> tokens : tokenLists) {
+                for (Token token : tokens) {
+                    if (!token.getToken().equals("ε")) {
+                        System.out.print(token.getToken());
+                        bw.write(token.getToken()+"\t"+token.getYylval()+"\t"+token.getText()+"\n");
+                    }
+
+
+                }
+                System.out.println();
             }
-            System.out.println();
+            bw.close();
+        }catch (Exception e){
+            System.out.println("写文件出错");
         }
 
 
